@@ -1,0 +1,468 @@
+{
+  "name": "Rust Python Functional Dark",
+  "type": "dark",
+  "colors": {
+    "foreground": "#aac3bb",
+    "icon.foreground": "#aac3bb",
+    "activityBar.activeBorder": "#c2b084",
+    "tab.activeBorderTop": "#e1d6b5",
+    "accent": "=======================================================",
+    "checkbox.background": "#8fb6b8",
+    "button.background": "#8fb6b8",
+    "button.secondaryForeground": "#c2b084", // c2b084 noticed only in the drop to present button in chat
+    "list.dropBetweenBackground": "#8fb6b8", // Background color for drop indicator in lists
+    "toolbar.hoverBackground": "#8fb6b850",
+    "toolbar.hoverOutline": "#9fb9b5",
+    "textLink.foreground": "#9bc2c4",
+    "activityBar.foreground": "#9bc2c4",
+    "statusBarItem.hoverBackground": "#8fb6b888",
+    "statusBarItem.hoverForeground": "#0c0c10",
+    "statusBarItem.compactHoverBackground": "#8fb6b8cc",
+    "statusBarItem.prominentForeground": "#000",
+    "statusBarItem.prominentBackground": "#c2b084", // not copilot chat text
+    "statusBarItem.errorBackground": "#d0667f",
+    "toolbar.activeBackground": "#c2b084", // not copilot chat text
+    "button.hoverBackground": "#c2b084", // `commit` button hover color
+    "extensionButton.prominentBackground": "#c2b084", // not sure when this appears
+    "statusBarItem.activeBackground": "#c2b084", // not sure when this appears
+    "quickInputList.focusForeground": "#c2b084", // command palette selection with arrow keys
+    "editorSuggestWidget.selectedForeground": "#c2b084", // not observed
+    "warning": "=======================================================",
+    "list.warningForeground": "#c8bfa8",   // Text color for warning items in lists (e.g. Problems panel)
+    "editorWarning.border": "#c2b08400",
+    "editorWarning.background": "#c2b08450",
+    "editorWarning.foreground": "#cdbb8f", //// squiggle, highlight in minimap and ridges in vertical scroll
+
+    "editorError.foreground": "#e2768f",
+    "editorInfo.foreground": "#87b2d1",
+    "editorError.background": "#d0667f20",
+    "editorError.border": "#d0667f",
+    "list.errorForeground": "#d0667f",     // Text color for error items
+        "editorInlayHint.foreground": "#9bc2c492", // inferred type
+    "near-accent": "==================================================",    
+    "statusBar.debuggingBackground": "#8fb6b890",
+    "list.dropBackground": "#8fb6b820",
+    "chat.requestBorder": "#8fb6b890",
+    "list.focusOutline": "#07070790",
+    "badge.background": "#8fb6b880",
+    "activityBarBadge.background": "#8fb6b855",
+    "panelTitle.activeForeground": "#8fb6b899",
+    "medlightgrey.transparent": "=====================================",
+    "editorIndentGuide.activeBackground1": "#9fb9b550",
+    "editor.wordHighlightBackground": "#9fb9b530",
+    "editorIndentGuide.background1": "#aaa1" , // vertical lines for folding
+    "editor.lineHighlightBorder": "#5551", // a thick rectangle around the current line
+    "editor.lineHighlightBackground": "#0003", // the bg color of the current line. but drawn over the text
+    "sideBar.foreground": "#aac4c070",
+    "medlightgrey.opaque": "------------------------------------------",
+    "editor.selectionHighlightBorder": "#c7d2cf",
+    "panelTitle.inactiveForeground": "#8fb6b8CC",
+    "titleBar.activeForeground": "#8fb6b8CC",
+    "sideBarTitle.foreground": "#9bc2c4cc",
+    "editorCursor.foreground": "#9bc2c4cc",
+    "quickInput.foreground": "#9bc2c4cc",
+    "tab.activeForeground": "#8fb6b8CC",
+    "editor.foreground": "#9bc2c4cc",
+    "selection.background": "#8fb6b833", // unsure what this does
+    "lightblue.opaque": "---------------------------------------------",
+    "statusBar.noFolderBackground": "#30425090",
+    "medgrey.opaque": "-----------------------------------------------",
+    "editorLineNumber.foreground": "#535b61",
+    "editorWidget.border": "#6e7881",
+    "focusBorder": "#6e788120",
+    "fivesomething.transparent": "====================================",
+    "editorGroup.dropBackground": "#4f5a6b30",
+    "chat.requestBackground": "#4f5a6b30",
+    "chat.requestCodeBorder": "#b98aa699",
+    "chat.requestBubbleBackground": "#31313666",
+    "chat.requestBubbleHoverBackground": "#494954aa",
+    "charcoal.opque": "===============================================",
+    "quickInputList.focusBackground": "#131315",
+    "titleBar.inactiveBackground": "#131315",
+    "dropdown.listBackground": "#131315",
+    "editorWidget.background": "#131315",
+    "editorCursor.background": "#131315",
+    "list.hoverForeground": "#fff", // in Explorer, the text when hovering over a file.
+    "list.hoverBackground": "#8fb6b840", // in explorer, the bg while hovering over a file.
+    "tab.activeBackground": "#131315",
+    "tab.hoverBackground": "#131315",
+    "editor.background": "#131315",
+    "prussianblue": "=================================================",
+    "editor.selectionBackground": "#233245",
+    "midnight": "=====================================================",
+    "editorGroupHeader.noTabsBackground": "#1B202a",
+    "verydarkbluegrey": "=============================================",
+    "editorSuggestWidget.selectedBackground": "#0c0c10",
+    "extensionButton.prominentForeground": "#0c0c10",
+    "editorGroupHeader.tabsBackground": "#0c0c10",
+    "sideBarSectionHeader.background": "#0c0c10",
+    "list.activeSelectionBackground": "#0c0c10",
+    "statusBar.debuggingForeground": "#0c0c10",
+    "statusBar.noFolderForeground": "#0c0c10",
+    "settings.textInputBackground": "#0c0c10",
+    "activityBarBadge.foreground": "#29292e",
+    "titleBar.activeBackground": "#0c0c10",
+    "activityBar.background": "#0c0c10",
+    "tab.inactiveBackground": "#0c0c10",
+    "quickInput.background": "#0c0c10",
+    "statusBar.background": "#0c0c10",
+    "list.focusBackground": "#0c0c10",
+    "checkbox.foreground": "#29292e",
+    "dropdown.background": "#0c0c10",
+    "sideBar.background": "#0c0c10",
+    "button.foreground": "#29292e",
+    "input.background": "#0c0c10",
+    "widget.shadow": "#0c0c10",
+    "darkmode": "...........................................................",
+    "editorLineNumber.activeForeground": "#444",
+    "activityBar.inactiveForeground": "#222",
+    "statusBar.foreground": "#4e4e4e",
+    "darkest": "======================================================",
+    "editorGroupHeader.tabsBorder": "#0c0c10",
+    "editorGroup.border": "#0c0c10",
+    "activityBar.border": "#0c0c10",
+    "titleBar.border": "#0c0c10",
+    "sideBar.border": "#0c0c10",
+    "tab.border": "#0c0c10",
+    "editorBracketHighlight.foreground1": "#a9cdd9", // orange
+    "editorBracketHighlight.foreground2": "#ded3ba", // Blue
+    "editorBracketHighlight.foreground3": "#8bc4bcaa", // Red
+  },
+  "tokenColors": [
+    {
+        "scope": "↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ control ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ↗ ",
+        "settings": {        "foreground": "#c898b5" }
+    },
+    {
+      "scope": [                     "keyword.control" ,
+                                "storage.modifier.mut" ,
+                        // "storage.type.function.python" , // def
+                        //  "storage.type.function.tempo" , // fn
+                                  "storage.type.class" , // python,
+                                  "storage.type.struct", // tempo, rust, swift
+      ],
+      "settings": {          "foreground": "#c898b5" }
+    },
+    {
+      "scope": [
+        "keyword.control.fn" , // tempo
+        "keyword.other.fn.rust", // rust
+        "storage.type.function" , // python def, tempo fn, swift func"
+      ],
+      "settings": {
+        "foreground": "#c898b5" ,
+        "fontStyle": "bold" }
+    },
+    {
+      "scope": "🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥 hot end 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥",
+      "settings": { "foreground": "#ede5cd" }
+    },
+    {
+      "scope": [
+        "entity.name.function.definition",
+        "entity.name.function", // python and swift
+        "entity.name.tag.localname.xml", // xml nodes
+        //"entity.name.function.rust", // rust
+      ],
+      "settings": {
+        "foreground": "#e7dcbb",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "scope": [
+        "meta.function.call" , // rust lambda
+        "meta.function-call" , // python nonidiomatic
+      ],
+      "settings": { "foreground": "#ede5cd" }
+    },
+    {
+      "scope": "keyword.operator.function.arrow.tempo",
+      "settings": { "foreground": "#ede5cd" }
+    },
+    {
+      "scope": [
+        "support.function" ,
+        "meta.function.call.imported" ,
+      ],
+      "settings": {
+         "foreground": "#ede5cdee" }
+    },
+    {
+      "scope": [
+        "meta.function-result" ,
+        "meta.function.result" ,
+        "support.type.result" ,
+        "constant.language.result" ,
+      ],
+      "settings": {
+        "foreground": "#d5bfa4",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "scope": [
+        "meta.function-result.type",
+      ],
+      "settings": {
+        "foreground": "#d5bfa4cc"
+      }
+    },
+    {
+      "scope": [
+        "keyword.operator.assignment",
+      ],
+      "settings": {
+        "foreground": "#e8ddd7"
+      }
+    },
+    {
+      "scope": [
+                            "variable.parameter.label" ,
+                   "support.function.any-method.swift" ,
+      ],
+      "settings": {
+                             "foreground": "#d1c3bd" ,
+      }
+    },
+    
+
+
+    {
+      "scope": "❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️ cold end ❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️❄️",
+      "settings": { "foreground": "#a9cdd9" }
+    },
+    
+    {
+      "scope":     "entity.name.type.struct.definition"  ,  // name of plex in definition
+      "settings": {                "foreground": "#bcdde4",
+                                    "fontStyle": "bold"
+      }
+    },
+    {
+      "scope": [
+                                              "meta.struct.definition" ,  // other struct definitions
+                           "entity.other.attribute-name.localname.xml" , // xml attributes
+      ] ,
+      "settings": {                          "foreground": "#a9cdd9" }
+    },
+    {
+      "scope": [
+        "entity.name.tag.html",
+        "entity.name.tag.localname.html",
+        "entity.other.attribute-name.html"
+      ],
+      "settings": {                          "foreground": "#a9cdd9" }
+    },
+    {
+      "scope": [
+        "punctuation.definition.tag.html",
+        "punctuation.definition.tag.begin.html",
+        "punctuation.definition.tag.end.html"
+      ],
+      "settings": {        "foreground": "#98c0c255" }
+    },
+    {
+      "scope": "keyword.declaration.struct",           // plex
+      "settings": { "foreground": "#a9cdd9aa",
+                    "fontStyle": "bold" }
+    },
+    {
+      "scope": [                    
+                                    "meta.item-access"  , // python fndef return type
+      ], //
+      "settings": {        "foreground": "#bfdee4" }
+    },
+    {
+      "scope": [                    "entity.name.type"  , // rust fndef return type
+      ], //
+      "settings": {        "foreground": "#a9cdd9aa" }
+    },
+    {
+      "scope": [
+        "entity.name.type.ts",
+        "entity.name.type.tsx",
+        "entity.name.type.interface.ts",
+        "entity.name.type.alias.ts",
+        "entity.name.type.class.ts",
+        "entity.name.type.enum.ts",
+        "entity.name.type.module.ts",
+        "entity.name.type.namespace.ts",
+        "support.type.primitive.ts",
+        "support.type.builtin.ts",
+        "support.class.ts"
+      ],
+      "settings": {        "foreground": "#a9cdd9" }
+    },
+    {
+      "scope": [
+        "storage.type.interface.ts",
+        "storage.type.type.ts",
+        "storage.type.enum.ts",
+        "storage.type.class.ts",
+        "storage.type.namespace.ts",
+        "storage.type.module.ts"
+      ],
+      "settings": {        "foreground": "#c898b5" }
+    },
+
+    {
+      "scope": [                              "string"  ,
+                                    "constant.language" ,
+                                     "constant.numeric" ,
+                                   "constant.rgb-value" ,
+                                   "constant.character"
+      ],
+      "settings": {           "foreground": "#a9cdd9" }
+    },
+
+    {
+      "scope": [                      "constant.other" ],
+      "settings": {          "foreground": "#a9cdd9" }
+    },
+    {
+      "scope": "meta.struct.definition",
+      "settings": {          "foreground": "#a9cdd9" }
+    },
+    {
+      "scope": [
+                    "entity.name.variable.field"  ,
+      ],
+      "settings": {        "foreground": "#a9cdd9aa" }
+    },
+    {
+      "scope":             "constant.character.escape"  ,
+      "settings": {        "foreground": "#9bc2c450" }
+    },
+    {
+      "scope": [
+        "meta.brace",
+        "punctuation.section.block.begin",
+        "punctuation.section.block.end",
+        "punctuation.definition.block.begin",
+        "punctuation.definition.block.end.rust",
+        "punctuation.brackets.curly",
+        "punctuation.section"
+      ],
+      "settings": {        "foreground": "#9bc2c455" }
+    },
+    {
+      "scope":                  "storage.modifier.mut" ,
+      "settings": {              "fontStyle": "italic" }
+    },
+    {
+      "scope": [                            "variable" ,
+                        "meta.function-call.arguments" ],
+      "settings": {        "foreground": "#9bc2c4aa" }
+    },
+    {
+      "scope": [                      "variable.other" ,
+                                   "variable.language" ,
+                                  "variable.parameter" ],
+      "settings": {        "foreground": "#9bc2c4cc" }
+    },
+    {
+      "scope": [               "entity.name.namespace" ,
+      ],
+      "settings": {        "foreground": "#9bc2c488" }
+    },
+    {
+      "scope":                                "source" ,
+      "settings": {        "foreground": "#9bc2c499" }
+    },
+
+
+
+    {
+      "scope": [
+                        "keyword.declaration.variable" ,
+                                "storage.modifier.mut" ,
+                                       "keyword.other" , // rust use
+                              "keyword.control.import" , // python import
+      ],
+      "settings": {       "foreground": "#9bc2c466" }
+    },
+    {
+      "scope": [
+
+                              "keyword.control.import" , // python import
+      ],
+      "settings": {        "foreground": "#9bc2c466",
+                                   "fontStyle": "bold" }
+    },
+  
+    {
+      "scope": "🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️ familiar tokens 🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️🏷️",
+      "settings": { "foreground": "#a9cdd9" }
+    },
+
+    {
+      "scope": [              "entity.name.type.library" ],
+      "settings": {        "foreground": "#a9cdd9aa" }
+    },
+    {
+      "scope": [              "entity.name.type.struct.field" ],
+      "settings": {        "foreground": "#a9cdd9aa" } // the elements of a struct when youre defining it
+    },
+    {
+      "scope": "support.type.module",
+      "settings": {        "foreground": "#a9cdd9aa" } // 
+    },
+    {
+      "scope": [
+                             "entity.name.type.module" ,   // like `math` when using `math.sqrt`
+      ],
+               "settings": { "foreground": "#a9cdd9aa" }
+    },
+
+    {
+      "scope": "🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍 hidden details 🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍🔍",
+      "settings": { "foreground": "#a9cdd9" }
+    },
+
+    {
+      "scope": [                       "storage.type" , // into x-position, storagetype.
+                       "entity.name.namespace.import" , // use namespace/plex
+                           "keyword.operator.logical" , // and, or, not
+                            "variable.argument.label" , // argument labels
+
+      ],
+      "settings": {       "foreground": "#9bc2c466" }
+    },
+    {
+      "scope": [                            "meta.use" ,
+                                         "meta.import" ,
+                                 "keyword.declaration" ,
+                      "punctuation.definition.tag.xml" ,
+      ],
+      "settings": {        "foreground": "#9bc2c466" }
+    },
+    {
+      "scope": "🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳 human touch 🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳",
+      "settings": { "foreground": "#a9cdd9" }
+    },
+    {
+      "scope": [                "source.json.comments"  ,
+          "source.json meta.structure.dictionary.json"  ,
+                     "support.type.property-name.json"  ,
+            "support.type.property-name.json.comments"  ,
+                                "string.json.comments"  ,
+             "meta.structure.dictionary.json.comments" 
+      ],
+      "settings": {        "foreground": "#b0ccc9cc"  ,
+                                 "fontStyle": "italic" }
+    },
+    {
+      "scope": "punctuation.definition.comment.tempo",
+      "settings": {        "foreground": "#b0ccc9dd" }
+    },
+    {
+      "scope": "comment.line.content.tempo",
+      "settings": {        "foreground": "#9bc2c466" }
+    },
+    {
+      "scope":                               "comment"  ,
+      "settings": {        "foreground": "#9bc2c466" }
+    },
+  ]
+}
