@@ -11,13 +11,13 @@
     "button.background": "#8fb6b8",
     "button.secondaryForeground": "#c2b084", // c2b084 noticed only in the drop to present button in chat
     "list.dropBetweenBackground": "#8fb6b8", // Background color for drop indicator in lists
-    "toolbar.hoverBackground": "#8fb6b850",
+    "toolbar.hoverBackground": "#3a3e48",
     "toolbar.hoverOutline": "#9fb9b5",
     "textLink.foreground": "#9bc2c4",
     "activityBar.foreground": "#9bc2c4",
-    "statusBarItem.hoverBackground": "#8fb6b888",
+    "statusBarItem.hoverBackground": "#53616e",
     "statusBarItem.hoverForeground": "#0c0c10",
-    "statusBarItem.compactHoverBackground": "#8fb6b8cc",
+    "statusBarItem.compactHoverBackground": "#70939e",
     "statusBarItem.prominentForeground": "#000",
     "statusBarItem.prominentBackground": "#c2b084", // not copilot chat text
     "statusBarItem.errorBackground": "#d0667f",
@@ -29,53 +29,53 @@
     "editorSuggestWidget.selectedForeground": "#c2b084", // not observed
     "warning": "=======================================================",
     "list.warningForeground": "#c8bfa8",   // Text color for warning items in lists (e.g. Problems panel)
-    "editorWarning.border": "#c2b08400",
-    "editorWarning.background": "#c2b08450",
+    "editorWarning.border": "#131315",
+    "editorWarning.background": "#47384a",
     "editorWarning.foreground": "#cdbb8f", //// squiggle, highlight in minimap and ridges in vertical scroll
 
     "editorError.foreground": "#e2768f",
     "editorInfo.foreground": "#87b2d1",
-    "editorError.background": "#d0667f20",
+    "editorError.background": "#232129",
     "editorError.border": "#d0667f",
     "list.errorForeground": "#d0667f",     // Text color for error items
-        "editorInlayHint.foreground": "#9bc2c492", // inferred type
+        "editorInlayHint.foreground": "#5b6f7f", // inferred type
     "near-accent": "==================================================",    
-    "statusBar.debuggingBackground": "#8fb6b890",
-    "list.dropBackground": "#8fb6b820",
-    "chat.requestBorder": "#8fb6b890",
-    "list.focusOutline": "#07070790",
-    "badge.background": "#8fb6b880",
-    "activityBarBadge.background": "#8fb6b855",
-    "panelTitle.activeForeground": "#8fb6b899",
+    "statusBar.debuggingBackground": "#566674",
+    "list.dropBackground": "#232429",
+    "chat.requestBorder": "#566674",
+    "list.focusOutline": "#0d0c0d",
+    "badge.background": "#4f5b69",
+    "activityBarBadge.background": "#3d414b",
+    "panelTitle.activeForeground": "#5a6c7a",
     "medlightgrey.transparent": "=====================================",
-    "editorIndentGuide.activeBackground1": "#9fb9b550",
-    "editor.wordHighlightBackground": "#9fb9b530",
-    "editorIndentGuide.background1": "#aaa1" , // vertical lines for folding
-    "editor.lineHighlightBorder": "#5551", // a thick rectangle around the current line
-    "editor.lineHighlightBackground": "#0003", // the bg color of the current line. but drawn over the text
-    "sideBar.foreground": "#aac4c070",
+    "editorIndentGuide.activeBackground1": "#3e4249",
+    "editor.wordHighlightBackground": "#2d2f34",
+    "editorIndentGuide.background1": "#1d1d1f" , // vertical lines for folding
+    "editor.lineHighlightBorder": "#181719", // a thick rectangle around the current line
+    "editor.lineHighlightBackground": "#100f11", // the bg color of the current line. but drawn over the text
+    "sideBar.foreground": "#525c65",
     "medlightgrey.opaque": "------------------------------------------",
     "editor.selectionHighlightBorder": "#c7d2cf",
-    "panelTitle.inactiveForeground": "#8fb6b8CC",
-    "titleBar.activeForeground": "#8fb6b8CC",
-    "sideBarTitle.foreground": "#9bc2c4cc",
-    "editorCursor.foreground": "#9bc2c4cc",
-    "quickInput.foreground": "#9bc2c4cc",
-    "tab.activeForeground": "#8fb6b8CC",
-    "editor.foreground": "#9bc2c4cc",
-    "selection.background": "#8fb6b833", // unsure what this does
+    "panelTitle.inactiveForeground": "#70939e",
+    "titleBar.activeForeground": "#70939e",
+    "sideBarTitle.foreground": "#7f9fa1",
+    "editorCursor.foreground": "#7f9fa1",
+    "quickInput.foreground": "#7f9fa1",
+    "tab.activeForeground": "#70939e",
+    "editor.foreground": "#7f9fa1",
+    "selection.background": "#2d2e35", // unsure what this does
     "lightblue.opaque": "---------------------------------------------",
-    "statusBar.noFolderBackground": "#30425090",
+    "statusBar.noFolderBackground": "#262a34",
     "medgrey.opaque": "-----------------------------------------------",
     "editorLineNumber.foreground": "#535b61",
     "editorWidget.border": "#6e7881",
-    "focusBorder": "#6e788120",
+    "focusBorder": "#1f1f22",
     "fivesomething.transparent": "====================================",
-    "editorGroup.dropBackground": "#4f5a6b30",
-    "chat.requestBackground": "#4f5a6b30",
-    "chat.requestCodeBorder": "#b98aa699",
-    "chat.requestBubbleBackground": "#31313666",
-    "chat.requestBubbleHoverBackground": "#494954aa",
+    "editorGroup.dropBackground": "#1f2024",
+    "chat.requestBackground": "#1f2024",
+    "chat.requestCodeBorder": "#75577b",
+    "chat.requestBubbleBackground": "#1f1f22",
+    "chat.requestBubbleHoverBackground": "#37373f",
     "charcoal.opque": "===============================================",
     "quickInputList.focusBackground": "#131315",
     "titleBar.inactiveBackground": "#131315",
@@ -83,7 +83,7 @@
     "editorWidget.background": "#131315",
     "editorCursor.background": "#131315",
     "list.hoverForeground": "#fff", // in Explorer, the text when hovering over a file.
-    "list.hoverBackground": "#8fb6b840", // in explorer, the bg while hovering over a file.
+    "list.hoverBackground": "#33353d", // in explorer, the bg while hovering over a file.
     "tab.activeBackground": "#131315",
     "tab.hoverBackground": "#131315",
     "editor.background": "#131315",
@@ -126,7 +126,7 @@
     "tab.border": "#0c0c10",
     "editorBracketHighlight.foreground1": "#a9cdd9", // orange
     "editorBracketHighlight.foreground2": "#ded3ba", // Blue
-    "editorBracketHighlight.foreground3": "#8bc4bcaa", // Red
+    "editorBracketHighlight.foreground3": "#5b8592", // Red
   },
   "tokenColors": [
     {
@@ -155,7 +155,7 @@
     },
     {
       "scope": "🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥 hot end 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥",
-      "settings": { "foreground": "#ede5cd" }
+      "settings": { "foreground": "#e7e8b9" }
     },
     {
       "scope": [
@@ -165,7 +165,7 @@
         //"entity.name.function.rust", // rust
       ],
       "settings": {
-        "foreground": "#e7dcbb",
+        "foreground": "#e7e8b9",
         "fontStyle": "bold"
       }
     },
@@ -174,11 +174,11 @@
         "meta.function.call" , // rust lambda
         "meta.function-call" , // python nonidiomatic
       ],
-      "settings": { "foreground": "#ede5cd" }
+      "settings": { "foreground": "#e7e8b9" }
     },
     {
       "scope": "keyword.operator.function.arrow.tempo",
-      "settings": { "foreground": "#ede5cd" }
+      "settings": { "foreground": "#e7e8b9" }
     },
     {
       "scope": [
@@ -186,7 +186,7 @@
         "meta.function.call.imported" ,
       ],
       "settings": {
-         "foreground": "#ede5cdee" }
+         "foreground": "#e7e8b9" }
     },
     {
       "scope": [
@@ -196,7 +196,7 @@
         "constant.language.result" ,
       ],
       "settings": {
-        "foreground": "#d5bfa4",
+        "foreground": "#e7e8b9",
         "fontStyle": "bold"
       }
     },
@@ -205,7 +205,7 @@
         "meta.function-result.type",
       ],
       "settings": {
-        "foreground": "#d5bfa4cc"
+        "foreground": "#e7e8b9"
       }
     },
     {
@@ -260,11 +260,11 @@
         "punctuation.definition.tag.begin.html",
         "punctuation.definition.tag.end.html"
       ],
-      "settings": {        "foreground": "#98c0c255" }
+      "settings": {        "foreground": "#3f444f" }
     },
     {
       "scope": "keyword.declaration.struct",           // plex
-      "settings": { "foreground": "#a9cdd9aa",
+      "settings": { "foreground": "#a9cdd9",
                     "fontStyle": "bold" }
     },
     {
@@ -276,7 +276,7 @@
     {
       "scope": [                    "entity.name.type"  , // rust fndef return type
       ], //
-      "settings": {        "foreground": "#a9cdd9aa" }
+      "settings": {        "foreground": "#a9cdd9" }
     },
     {
       "scope": [
@@ -328,11 +328,11 @@
       "scope": [
                     "entity.name.variable.field"  ,
       ],
-      "settings": {        "foreground": "#a9cdd9aa" }
+      "settings": {        "foreground": "#a9cdd9" }
     },
     {
       "scope":             "constant.character.escape"  ,
-      "settings": {        "foreground": "#9bc2c450" }
+      "settings": {        "foreground": "#3d424d" }
     },
     {
       "scope": [
@@ -344,7 +344,7 @@
         "punctuation.brackets.curly",
         "punctuation.section"
       ],
-      "settings": {        "foreground": "#9bc2c455" }
+      "settings": {        "foreground": "#3f4550" }
     },
     {
       "scope":                  "storage.modifier.mut" ,
@@ -353,22 +353,22 @@
     {
       "scope": [                            "variable" ,
                         "meta.function-call.arguments" ],
-      "settings": {        "foreground": "#9bc2c4aa" }
+      "settings": {        "foreground": "#7f9fa1" }
     },
     {
       "scope": [                      "variable.other" ,
                                    "variable.language" ,
                                   "variable.parameter" ],
-      "settings": {        "foreground": "#9bc2c4cc" }
+      "settings": {        "foreground": "#7f9fa1" }
     },
     {
       "scope": [               "entity.name.namespace" ,
       ],
-      "settings": {        "foreground": "#9bc2c488" }
+      "settings": {        "foreground": "#7f9fa1" }
     },
     {
       "scope":                                "source" ,
-      "settings": {        "foreground": "#9bc2c499" }
+      "settings": {        "foreground": "#7f9fa1" }
     },
 
 
@@ -380,14 +380,14 @@
                                        "keyword.other" , // rust use
                               "keyword.control.import" , // python import
       ],
-      "settings": {       "foreground": "#9bc2c466" }
+      "settings": {       "foreground": "#49595b" }
     },
     {
       "scope": [
 
                               "keyword.control.import" , // python import
       ],
-      "settings": {        "foreground": "#9bc2c466",
+      "settings": {        "foreground": "#49595b",
                                    "fontStyle": "bold" }
     },
   
@@ -398,21 +398,21 @@
 
     {
       "scope": [              "entity.name.type.library" ],
-      "settings": {        "foreground": "#a9cdd9aa" }
+      "settings": {        "foreground": "#a9cdd9" }
     },
     {
       "scope": [              "entity.name.type.struct.field" ],
-      "settings": {        "foreground": "#a9cdd9aa" } // the elements of a struct when youre defining it
+      "settings": {        "foreground": "#a9cdd9" } // the elements of a struct when youre defining it
     },
     {
       "scope": "support.type.module",
-      "settings": {        "foreground": "#a9cdd9aa" } // 
+      "settings": {        "foreground": "#a9cdd9" } // 
     },
     {
       "scope": [
                              "entity.name.type.module" ,   // like `math` when using `math.sqrt`
       ],
-               "settings": { "foreground": "#a9cdd9aa" }
+               "settings": { "foreground": "#a9cdd9" }
     },
 
     {
@@ -427,7 +427,7 @@
                             "variable.argument.label" , // argument labels
 
       ],
-      "settings": {       "foreground": "#9bc2c466" }
+      "settings": {       "foreground": "#49595b" }
     },
     {
       "scope": [                            "meta.use" ,
@@ -435,7 +435,7 @@
                                  "keyword.declaration" ,
                       "punctuation.definition.tag.xml" ,
       ],
-      "settings": {        "foreground": "#9bc2c466" }
+      "settings": {        "foreground": "#49595b" }
     },
     {
       "scope": "🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳 human touch 🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳",
@@ -457,7 +457,7 @@
         "markup.heading.setext.2.markdown"
       ],
       "settings": {
-        "foreground": "#a9cdd9",
+        "foreground": "#e7e8b9",
         "fontStyle": "bold"
       }
     },
@@ -467,7 +467,7 @@
         "markup.heading.setext.1.markdown"
       ],
       "settings": {
-        "foreground": "#a9cdd9",
+        "foreground": "#e7e8b9",
         "fontStyle": "bold"
       }
     },
@@ -476,7 +476,7 @@
         "punctuation.definition.heading.markdown"
       ],
       "settings": {
-        "foreground": "#d5bfa4"
+        "foreground": "#cdbb8f"
       }
     },
     {
@@ -484,7 +484,7 @@
         "markup.bold.markdown"
       ],
       "settings": {
-        "foreground": "#d5bfa4",
+        "foreground": "#c898b5",
         "fontStyle": "bold"
       }
     },
@@ -493,7 +493,7 @@
         "markup.italic.markdown"
       ],
       "settings": {
-        "foreground": "#d5bfa4",
+        "foreground": "#e7e8b9",
         "fontStyle": "italic"
       }
     },
@@ -502,7 +502,7 @@
         "markup.strikethrough.markdown"
       ],
       "settings": {
-        "foreground": "#9bc2c499",
+        "foreground": "#7f9fa1",
         "fontStyle": "strikethrough"
       }
     },
@@ -519,7 +519,7 @@
         "markup.fenced_code.block.markdown"
       ],
       "settings": {
-        "foreground": "#9bc2c466"
+        "foreground": "#49595b"
       }
     },
     {
@@ -529,7 +529,7 @@
         "punctuation.section.code.end.markdown"
       ],
       "settings": {
-        "foreground": "#9bc2c455"
+        "foreground": "#3f4550"
       }
     },
     {
@@ -537,7 +537,7 @@
         "markup.quote.markdown"
       ],
       "settings": {
-        "foreground": "#9bc2c488",
+        "foreground": "#7f9fa1",
         "fontStyle": "italic"
       }
     },
@@ -546,7 +546,7 @@
         "punctuation.definition.quote.begin.markdown"
       ],
       "settings": {
-        "foreground": "#9bc2c455"
+        "foreground": "#3f4550"
       }
     },
     {
@@ -555,7 +555,7 @@
         "markup.list.numbered.markdown"
       ],
       "settings": {
-        "foreground": "#d5bfa4"
+        "foreground": "#7f9fa1"
       }
     },
     {
@@ -563,7 +563,7 @@
         "punctuation.definition.list.begin.markdown"
       ],
       "settings": {
-        "foreground": "#d5bfa4"
+        "foreground": "#a9cdd9"
       }
     },
     {
@@ -571,7 +571,7 @@
         "markup.underline.link.markdown"
       ],
       "settings": {
-        "foreground": "#c898b5",
+        "foreground": "#49595b",
         "fontStyle": "underline"
       }
     },
@@ -582,7 +582,7 @@
         "constant.other.reference.link.markdown"
       ],
       "settings": {
-        "foreground": "#9bc2c4cc",
+        "foreground": "#7f9fa1",
         "fontStyle": "underline"
       }
     },
@@ -592,7 +592,19 @@
         "punctuation.definition.metadata.markdown"
       ],
       "settings": {
-        "foreground": "#9bc2c455"
+        "foreground": "#3f4550"
+      }
+    },
+    {
+      "scope": [
+        "markup.table.header.markdown",
+        "meta.table.header.markdown",
+        "meta.table.header.row.markdown",
+        "markup.table.header.cell.markdown"
+      ],
+      "settings": {
+        "foreground": "#a9cdd9",
+        "fontStyle": "bold"
       }
     },
     {
@@ -600,10 +612,14 @@
         "punctuation.definition.table.markdown",
         "punctuation.separator.table.markdown",
         "markup.table.separator.markdown",
-        "meta.separator.table.markdown"
+        "meta.separator.table.markdown",
+        "meta.table.markdown punctuation.definition.metadata.markdown",
+        "meta.table.markdown punctuation.definition.table.markdown",
+        "meta.table.markdown punctuation.separator.table.markdown",
+        "markup.table.markdown punctuation.definition.metadata.markdown"
       ],
       "settings": {
-        "foreground": "#9bc2c466"
+        "foreground": "#49595b"
       }
     },
     {
@@ -622,20 +638,20 @@
                                 "string.json.comments"  ,
              "meta.structure.dictionary.json.comments" 
       ],
-      "settings": {        "foreground": "#b0ccc9cc"  ,
+      "settings": {        "foreground": "#49595b"  ,
                                  "fontStyle": "italic" }
     },
     {
       "scope": "punctuation.definition.comment.tempo",
-      "settings": {        "foreground": "#b0ccc9dd" }
+      "settings": {        "foreground": "#49595b" }
     },
     {
       "scope": "comment.line.content.tempo",
-      "settings": {        "foreground": "#9bc2c466" }
+      "settings": {        "foreground": "#49595b" }
     },
     {
       "scope":                               "comment"  ,
-      "settings": {        "foreground": "#9bc2c466" }
+      "settings": {        "foreground": "#49595b" }
     },
   ]
 }

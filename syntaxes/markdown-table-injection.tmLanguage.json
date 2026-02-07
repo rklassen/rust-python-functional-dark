@@ -1,0 +1,21 @@
+{
+  "scopeName": "source.rpfd.markdown.table.injection",
+  "injectionSelector": "L:text.html.markdown",
+  "patterns": [
+    {
+      "name": "meta.table.markdown",
+      "begin": "^(?=\\s*\\|?.*\\|.*$)",
+      "end": "$",
+      "patterns": [
+        {
+          "name": "punctuation.separator.table.markdown",
+          "match": "\\|"
+        },
+        {
+          "name": "meta.separator.table.markdown",
+          "match": "(?<=\\|\\s|^)[:\\-]{3,}(?=\\s\\||\\s*$)"
+        }
+      ]
+    }
+  ]
+}

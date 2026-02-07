@@ -5,10 +5,12 @@ A dark color theme for VS Code optimized for Rust and Python development.
 ## Features
 
 - Dark theme optimized for long coding sessions
-- Special syntax highlighting for Rust and Python
-- Clear distinction between different code elements
+- Special syntax highlighting for Rust and Python*
+- Now with markdown and typesecript support also.
+- Preattentively highlights functions, and distinguishes control
 - Reduced eye strain through careful color selection
 - Functional programming-inspired design philosophy
+- Related semantics (code, comments, literals) share colorband.
 
 ## Screenview
 
@@ -16,30 +18,36 @@ A dark color theme for VS Code optimized for Rust and Python development.
 
 ## Design Philosophy
 
+[![Colorwheel Study](media/rpfd-colorwheels.png)](media/rpfd-colorwheels.png)
+
 - Core mapping: functions/actions use the cool accent; verbs/operations use the warm accent.
-- We bias toward the cyan → yellow band because most people (including those with deuteranomaly) are more sensitive to contrast in this range.
 - Visual emphasis is limited to 3 ranks (0–2) to keep contrast reliable and reduce false salience.
+- Thank you for caring about accessibility with us; this palette was explicitly tuned against contrast-ratio checks for deuteranomaly/deutan-deficient viewing conditions.
 
 ### Emphasis Ranks (0 = strongest)
 
-| Rank | Intent | Visual Intensity |
-| --- | --- | --- |
-| 0 | Primary focus (actions, errors, key edges) | Highest chroma, highest contrast |
-| 1 | Secondary focus (types, structure, navigation) | Mid chroma, mid contrast |
-| 2 | Tertiary context (hints, punctuation, low-salience UI) | Low chroma, lower contrast |
+Rank | Intent | Scalar | Visual Intensity |
+--- | --- | --- | ---
+0 | Primary focus (actions, errors, key edges) | 1.0 | Highest chroma, highest contrast |
+1 | Secondary focus (types, structure, navigation) | 0.618 | Mid chroma, mid contrast |
+2 | Tertiary context (hints, punctuation, low-salience UI) | 0.382 | Low chroma, lower contrast |
 
-### Palette Semantics
+### Palette Definition
 
-| Role | Example usage | Color |
-| --- | --- | --- |
-| Base background | Editor, panels | `#0c0c10` |
-| Foreground text | Default text | `#aac3bb` |
-| Cool accent (actions) | Functions, active UI | `#8fb6b8` |
-| Warm accent (verbs) | Operators, active borders | `#c2b084` |
-| Link / interactive | Links, active text | `#9bc2c4` |
-| Warning | Warnings / caution | `#c8bfa8` / `#cdbb8f` |
-| Error | Errors / failures | `#d0667f` / `#e2768f` |
-| Info | Informational | `#87b2d1` |
+Swatch | Hex | Color Name | Category | Example usage | Description
+--- | --- | --- | --- | --- | ---
+![Functional swatch](media/swatch_functional.png) | `#e7e8b9` | Gracelynn     | Verbs               | Functions and document headings    | Action-oriented semantics
+![Executive swatch](media/swatch_executive.png)   | `#c898b5` | Mauve Mist    | Executive           | Control flow and active borders    | Syntactic-ontological control tokens
+![Common swatch](media/swatch_common.png)         | `#7f9fa1` | Granny Smith  | Common              | Default text and neutral structure | Semantic, unmarked
+![Editor bg swatch](media/swatch_editor_bg.png)   | `#131315` | Business Black | Editor bg           | Primary editor background          | Main editing surface tone
+![Background swatch](media/swatch_base_bg.png)    | `#0c0c10` | Woodsmoke     | Base BG             | Editor and panel surfaces          | Foundational canvas tone
+![Literal swatch](media/swatch_literal.png)       | `#a9cdd9` | Sinbad        | Literal             | Literals and atomics               | Ephemera, atomics
+![Paratext swatch](media/swatch_paratext.png)     | `#49595b` | Feldgrau      | Paratext            | Comments and low-salience hints    | Meta-discourse
+![Warning swatch](media/swatch_warning.png)       | `#c8bfa8` | Coral Bright  | Warning             | Warning states and caution UI      | Elevated non-fatal attention
+![Error swatch](media/swatch_error.png)           | `#d0667f` | Charm         | Error               | Errors and failures                | Critical attention channel
+![Info swatch](media/swatch_info.png)             | `#87b2d1` | Cimarron      | Info                | Informational states               | Contextual guidance channel
+
+Color names from [color-name.com](https://www.color-name.com/) and [chir.ag/Name that Color](https://chir.ag/projects/name-that-color/)
 
 ## Installation
 
@@ -48,13 +56,6 @@ A dark color theme for VS Code optimized for Rust and Python development.
 3. Search for "Rust Python Functional Dark"
 4. Click Install
 5. Select the theme from Code > Preferences > Color Theme
-
-## Recommended Font
-
-For the best experience, we recommend using a programming font with ligatures such as:
-- Fira Code
-- JetBrains Mono
-- Cascadia Code
 
 ## Feedback
 
@@ -71,9 +72,3 @@ If you have any suggestions or issues, please open an issue on the GitHub reposi
 MIT
 
 **Enjoy!**
-
-`this is a code block`
-
-```
-this is a different code block
-```
