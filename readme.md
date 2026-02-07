@@ -14,6 +14,33 @@ A dark color theme for VS Code optimized for Rust and Python development.
 
 [Screenshots will be added soon]
 
+## Design Philosophy
+
+- Core mapping: functions/actions use the cool accent; verbs/operations use the warm accent.
+- We bias toward the cyan → yellow band because most people (including those with deuteranomaly) are more sensitive to contrast in this range.
+- Visual emphasis is limited to 3 ranks (0–2) to keep contrast reliable and reduce false salience.
+
+### Emphasis Ranks (0 = strongest)
+
+| Rank | Intent | Visual Intensity |
+| --- | --- | --- |
+| 0 | Primary focus (actions, errors, key edges) | Highest chroma, highest contrast |
+| 1 | Secondary focus (types, structure, navigation) | Mid chroma, mid contrast |
+| 2 | Tertiary context (hints, punctuation, low-salience UI) | Low chroma, lower contrast |
+
+### Palette Semantics
+
+| Role | Example usage | Color |
+| --- | --- | --- |
+| Base background | Editor, panels | `#0c0c10` |
+| Foreground text | Default text | `#aac3bb` |
+| Cool accent (actions) | Functions, active UI | `#8fb6b8` |
+| Warm accent (verbs) | Operators, active borders | `#c2b084` |
+| Link / interactive | Links, active text | `#9bc2c4` |
+| Warning | Warnings / caution | `#c8bfa8` / `#cdbb8f` |
+| Error | Errors / failures | `#d0667f` / `#e2768f` |
+| Info | Informational | `#87b2d1` |
+
 ## Installation
 
 1. Launch VS Code
@@ -35,7 +62,9 @@ If you have any suggestions or issues, please open an issue on the GitHub reposi
 
 ## Credits
 
-This theme is created with a focus on slightly muted colors for an even more comfortable coding experience.
+- Anne Treisman, for the glass
+- Edward Tufte, for the juice
+- Prometheus, for the splice
 
 ## License
 
