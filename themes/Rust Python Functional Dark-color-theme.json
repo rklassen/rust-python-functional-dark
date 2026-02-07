@@ -442,6 +442,179 @@
       "settings": { "foreground": "#a9cdd9" }
     },
     {
+      "scope": "📝📝📝📝📝📝📝📝📝📝📝📝📝📝📝📝📝📝📝 markdown 📝📝📝📝📝📝📝📝📝📝📝📝📝📝📝📝",
+      "settings": { "foreground": "#a9cdd9" }
+    },
+    {
+      "scope": [
+        "markup.heading.markdown",
+        "markup.heading.setext.markdown",
+        "markup.heading.2.markdown",
+        "markup.heading.3.markdown",
+        "markup.heading.4.markdown",
+        "markup.heading.5.markdown",
+        "markup.heading.6.markdown",
+        "markup.heading.setext.2.markdown"
+      ],
+      "settings": {
+        "foreground": "#a9cdd9",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "scope": [
+        "markup.heading.1.markdown",
+        "markup.heading.setext.1.markdown"
+      ],
+      "settings": {
+        "foreground": "#a9cdd9",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "scope": [
+        "punctuation.definition.heading.markdown"
+      ],
+      "settings": {
+        "foreground": "#d5bfa4"
+      }
+    },
+    {
+      "scope": [
+        "markup.bold.markdown"
+      ],
+      "settings": {
+        "foreground": "#d5bfa4",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "scope": [
+        "markup.italic.markdown"
+      ],
+      "settings": {
+        "foreground": "#d5bfa4",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "scope": [
+        "markup.strikethrough.markdown"
+      ],
+      "settings": {
+        "foreground": "#9bc2c499",
+        "fontStyle": "strikethrough"
+      }
+    },
+    {
+      "scope": [
+        "markup.inline.raw.string.markdown"
+      ],
+      "settings": {
+        "foreground": "#a9cdd9"
+      }
+    },
+    {
+      "scope": [
+        "markup.fenced_code.block.markdown"
+      ],
+      "settings": {
+        "foreground": "#9bc2c466"
+      }
+    },
+    {
+      "scope": [
+        "punctuation.definition.raw.markdown",
+        "punctuation.section.code.begin.markdown",
+        "punctuation.section.code.end.markdown"
+      ],
+      "settings": {
+        "foreground": "#9bc2c455"
+      }
+    },
+    {
+      "scope": [
+        "markup.quote.markdown"
+      ],
+      "settings": {
+        "foreground": "#9bc2c488",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "scope": [
+        "punctuation.definition.quote.begin.markdown"
+      ],
+      "settings": {
+        "foreground": "#9bc2c455"
+      }
+    },
+    {
+      "scope": [
+        "markup.list.unnumbered.markdown",
+        "markup.list.numbered.markdown"
+      ],
+      "settings": {
+        "foreground": "#d5bfa4"
+      }
+    },
+    {
+      "scope": [
+        "punctuation.definition.list.begin.markdown"
+      ],
+      "settings": {
+        "foreground": "#d5bfa4"
+      }
+    },
+    {
+      "scope": [
+        "markup.underline.link.markdown"
+      ],
+      "settings": {
+        "foreground": "#c898b5",
+        "fontStyle": "underline"
+      }
+    },
+    {
+      "scope": [
+        "string.other.link.description.markdown",
+        "string.other.link.title.markdown",
+        "constant.other.reference.link.markdown"
+      ],
+      "settings": {
+        "foreground": "#9bc2c4cc",
+        "fontStyle": "underline"
+      }
+    },
+    {
+      "scope": [
+        "punctuation.definition.link.markdown",
+        "punctuation.definition.metadata.markdown"
+      ],
+      "settings": {
+        "foreground": "#9bc2c455"
+      }
+    },
+    {
+      "scope": [
+        "punctuation.definition.table.markdown",
+        "punctuation.separator.table.markdown",
+        "markup.table.separator.markdown",
+        "meta.separator.table.markdown"
+      ],
+      "settings": {
+        "foreground": "#9bc2c466"
+      }
+    },
+    {
+      "scope": [
+        "meta.separator.markdown"
+      ],
+      "settings": {
+        "foreground": "#6e7881"
+      }
+    },
+    {
       "scope": [                "source.json.comments"  ,
           "source.json meta.structure.dictionary.json"  ,
                      "support.type.property-name.json"  ,

@@ -10,9 +10,9 @@ A dark color theme for VS Code optimized for Rust and Python development.
 - Reduced eye strain through careful color selection
 - Functional programming-inspired design philosophy
 
-## Screenshots
+## Screenview
 
-[Screenshots will be added soon]
+[![Screenview](media/rpfd-screenview.gif)](media/rpfd-screenview.gif)
 
 ## Design Philosophy
 
@@ -71,3 +71,9 @@ If you have any suggestions or issues, please open an issue on the GitHub reposi
 MIT
 
 **Enjoy!**
+
+`this is a code block`
+
+```
+this is a different code block
+```
