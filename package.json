@@ -2,7 +2,7 @@
 	"name": "rust-python-functional-dark",
 	"displayName": "Rust Python Functional Dark",
 	"description": "A dark color theme optimized for Rust and Python development.",
-	"version": "0.1.7",
+	"version": "0.1.8",
 	"engines": {
 		"vscode": "^1.101.0"
 	},
