@@ -447,13 +447,9 @@
     },
     {
       "scope": [
-        "markup.heading.markdown",
-        "markup.heading.setext.markdown",
+        "markup.heading.1.markdown",
+        "markup.heading.setext.1.markdown",
         "markup.heading.2.markdown",
-        "markup.heading.3.markdown",
-        "markup.heading.4.markdown",
-        "markup.heading.5.markdown",
-        "markup.heading.6.markdown",
         "markup.heading.setext.2.markdown"
       ],
       "settings": {
@@ -463,11 +459,13 @@
     },
     {
       "scope": [
-        "markup.heading.1.markdown",
-        "markup.heading.setext.1.markdown"
+        "markup.heading.3.markdown",
+        "markup.heading.4.markdown",
+        "markup.heading.5.markdown",
+        "markup.heading.6.markdown"
       ],
       "settings": {
-        "foreground": "#e7e8b9",
+        "foreground": "#c8bfa8",
         "fontStyle": "bold"
       }
     },
