@@ -176,6 +176,17 @@ impl WErrs {
         )
     }
 
+    pub(super) fn bad_opref() -> SemanticErr {
+        Self::e(
+            "malformed operator ref",
+            "`@id` (a single bare id, no slice tail)",
+            &[
+                "drop extra whitespace or punctuation",
+                "use `@id ..len` for a bytestream slice instead",
+            ],
+        )
+    }
+
     pub(super) fn bad_offset(s: &str) -> SemanticErr {
         Self::ef(
             format!("bad offset {s:?}"),

@@ -296,8 +296,11 @@ impl<'a> XmlReader<'a> {
                     let id = Self::attr_str(&b, "id")
                         .unwrap_or_default();
                     let name = Self::attr_str(&b, "name");
+                    let weight = Self::node_weight_from(&b);
                     let attrs = self.r_attrs(&kind_s);
-                    out.push(NodeDef { id, kind, name, attrs });
+                    out.push(NodeDef {
+                        id, kind, name, attrs, weight,
+                    });
                 }
                 Ok(Event::Empty(b)) => {
                     let kind_s = Self::tag_name(&b);
@@ -305,11 +308,11 @@ impl<'a> XmlReader<'a> {
                     let id = Self::attr_str(&b, "id")
                         .unwrap_or_default();
                     let name = Self::attr_str(&b, "name");
+                    let weight = Self::node_weight_from(&b);
                     out.push(NodeDef {
-                        id,
-                        kind,
-                        name,
+                        id, kind, name,
                         attrs: IndexMap::new(),
+                        weight,
                     });
                 }
                 Ok(Event::End(_)) => break,

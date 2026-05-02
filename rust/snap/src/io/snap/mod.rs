@@ -15,6 +15,7 @@ mod lex;
 mod lex_errs;
 mod parse;
 mod parse_body;
+mod parse_weight;
 mod emit;
 mod emit_body;
 

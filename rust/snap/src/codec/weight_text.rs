@@ -75,6 +75,7 @@ impl WeightText {
                 _ => Self::e_matrix(rs, *e),
             },
             EdgeWeight::ByteRef(r, _) => Self::e_byteref(r),
+            EdgeWeight::OpRef(id, _) => Self::e_opref(id),
         }
     }
 }
@@ -371,5 +372,43 @@ mod tests {
     #[test]
     fn rej_hex_under_float_enc() {
         rej("FF12, AABB", Enc::Float, "hex");
+    }
+
+    // v0.7: bare `@id` is an operator-ref weight (no slice tail).
+    #[test]
+    fn opref_bare_under_raw() {
+        let w = p("@scorer", Enc::Raw);
+        assert_eq!(
+            w,
+            EdgeWeight::OpRef("scorer".into(), Enc::Raw),
+        );
+    }
+
+    #[test]
+    fn opref_distinguished_from_byteref() {
+        // Bare `@emb_42` → OpRef.
+        let op = p("@emb_42", Enc::Raw);
+        assert!(matches!(op, EdgeWeight::OpRef(_, _)));
+        // `@emb_42 ..1024` → ByteRef.
+        let br = p("@emb_42 ..1024", Enc::Raw);
+        assert!(matches!(br, EdgeWeight::ByteRef(_, _)));
+    }
+
+    #[test]
+    fn opref_carries_format_mark_encoding() {
+        // The format mark on the arrow is preserved on OpRef so the
+        // runtime knows how to coerce the operator's return value.
+        let w = p("@op", Enc::Snorm);
+        assert_eq!(w, EdgeWeight::OpRef("op".into(), Enc::Snorm));
+    }
+
+    #[test]
+    fn opref_roundtrip_emits_bare_at() {
+        let w = p("@scorer", Enc::Raw);
+        let out = WeightText::emit(&w);
+        assert_eq!(out, "@scorer");
+        // And under a different encoding still emits no slice tail.
+        let w2 = p("@op", Enc::Snorm);
+        assert_eq!(WeightText::emit(&w2), "@op");
     }
 }

@@ -73,6 +73,8 @@ impl Graph {
                 Err(e) => err.push(e),
             }
         }
+        // v0.7 node-weight kind-check: pass after nodes is built.
+        err.extend(nodes.validate_weight_refs());
         if !err.is_empty() {
             return Err(err);
         }

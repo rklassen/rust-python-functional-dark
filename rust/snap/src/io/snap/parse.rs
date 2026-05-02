@@ -408,7 +408,7 @@ impl<'a> Parser<'a> {
         }
     }
 
-    fn format_mark(t: &Tok<'_>) -> Option<NumericEncoding> {
+    pub(crate) fn format_mark(t: &Tok<'_>) -> Option<NumericEncoding> {
         match t {
             Tok::Ident(s) => match *s {
                 "s" => Some(NumericEncoding::Snorm),
@@ -423,7 +423,7 @@ impl<'a> Parser<'a> {
     /// Default encoding when the arrow has no `s|u|h` mark.
     /// Heuristic: `@`-ref → `Raw`; contains `.` → `Float`; else
     /// `Int`. The detailed validation lives inside `WeightText`.
-    fn infer_encoding(s: &str) -> NumericEncoding {
+    pub(crate) fn infer_encoding(s: &str) -> NumericEncoding {
         let t = s.trim();
         if t.starts_with('@') { NumericEncoding::Raw }
         else if t.contains('.') { NumericEncoding::Float }

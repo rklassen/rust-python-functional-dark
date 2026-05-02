@@ -11,7 +11,7 @@ use smallvec::SmallVec;
 
 use crate::codec::hex::Hex;
 use crate::codec::weight_text::WeightText;
-use crate::data::types::{BytestreamRef, NumericEncoding};
+use crate::data::types::{BytestreamRef, NodeId, NumericEncoding};
 
 type Enc = NumericEncoding;
 
@@ -58,6 +58,10 @@ impl WeightText {
         } else {
             format!("@{} +{}..{}", r.stream, r.offset, r.len)
         }
+    }
+
+    pub(super) fn e_opref(id: &NodeId) -> String {
+        format!("@{id}")
     }
 
     #[allow(

@@ -1,0 +1,119 @@
+🪢snap example_project
+# Snap v0.7 sample exercising all syntactic features.
+
+.graph {
+ gen: 3,
+ id: sb83,
+ name: 'Example Project',
+ operators: 'code_path/library_name/',
+ time: 2026-05-02T11:57:00Z,
+ types: None,
+ version: 0.7,
+ workspace: 'data_path/example/',
+ date: 2026-05-02T11:57:00Z,
+ data_path: 'data_path/',
+ code_path: 'code_path/',
+}
+
+edges {
+ alignment_path.out -> read_alignments.in.path,
+ read_alignments.out.alignments -> design_alignment,
+ @ny5a -> write.in.path,
+
+ embeddings {
+  a -> b,
+  a -(352)-> b,
+  a -(0.5)s-> b,
+  a -(0.875)u-> b,
+  a -(FF12AABB)h-> b,
+  a -(-0.25, .875, 0, 0.5)s-> b,
+  a -(1, 2, 3 | 4, 5 | 6, 7, 8, 9)-> b,
+  a -(@emb_42 ..1024)s-> b,
+  a -(@emb_42 +512..1024)-> b,
+  a -(@op_dynamic)-> b,
+ }
+}
+
+extras {
+ boolean-key: true,
+ numerical-key: 123.45,
+ sub-dictionary: {
+  str-key: 'value1',
+ },
+}
+
+layout {
+ alignment_path: (-1.0, 2.0),
+ @b6d3: (2.0, 200.0),
+ @b6d3.out.alignments: (20.0, 0.0),
+}
+
+literals {
+ alignment_index$p9a2: int = 0,
+ verbose$c7f1: bool = true,
+}
+
+nodes {
+ file {
+  id: x4nw,
+  name: alignment.15n.xml,
+  op: read,
+  path: './20.alignments.gen/',
+  type: FileTypeLandXml,
+ },
+ function LandXmlWriter.write$32gp {
+  in: { path: FileTypeLandXml, surface: FileTypeLandXml, },
+  out: None,
+  source: Writers/LandXmlWriter.py,
+  weight: 0.75,
+ },
+ info {
+  id: c7f1,
+  name: 'LAZ Source Info',
+  key_b: true,
+ },
+ object {
+  id: o1a2,
+  name: 'Object Name',
+  type: ExampleObjectType,
+ },
+ operator backfill$c8d3 {
+  in: { input: type, },
+  out: {None},
+  weight: (0.5, 0.875)s,
+ },
+ property length$0pla {
+  in: @v8e5,
+  out: float,
+ },
+}
+
+registers {
+ design_alignment$v8e5: Civil.Alignment,
+ dim128$d128: int,
+}
+
+streams {
+ stream {
+  id: a11t,
+  data: p78pTR/UdclA0BcO9mqCc0f9JH0p0iQyuUHUj4LaIcFrMA1uaxXcQHt3QkWrWvfULhMx3==,
+  name: 'binary data',
+ },
+ stream additional$c8d3 {
+  :ZU7YGMxmNLTokjYIcPGS6zB6Ymb316WdvEnlicNAOrf60ShcYVOYdIiAAoYxI15VV30OBAqHn4hWU
+  +afDvn69q1hzHJjKCRHWUmTj8OvTyBqquR9WAmDt6IDLjGYwH/HmoRnOUdg44V42C7oCa9bq3HoJG5
+  +7bd6N8Ncs9GjYilu9Tx3fzDbPrpAYiWRWLBK8+Sog==,
+ },
+}
+
+types {
+ 'Alignments' -> list[Civil.Alignment],
+ AlignmentCollection,
+ bool,
+ Civil.Alignment,
+ FileTypeLandXml,
+ float,
+ int,
+}
+
+end🪢

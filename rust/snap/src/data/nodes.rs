@@ -3,6 +3,7 @@ use smol_str::SmolStr;
 
 use crate::data::err::{NonEmpty, SemanticErr};
 use crate::data::types::{AttrValue, NodeId, NodeIx, NodeKind};
+use crate::data::weight::EdgeWeight;
 
 #[derive(Clone, Debug, PartialEq)]
 pub struct NodeDef {
@@ -13,6 +14,9 @@ pub struct NodeDef {
     /// Kind-specific fields, insertion-ordered. Canonical emit re-sorts
     /// alphabetically; the parser accepts any order.
     pub attrs: IndexMap<SmolStr, AttrValue>,
+    /// v0.7: optional node weight. Same value grammar as edge weights;
+    /// `EdgeWeight::None` means "no weight present."
+    pub weight: Option<EdgeWeight>,
 }
 
 #[derive(Clone, Debug, PartialEq)]
@@ -24,6 +28,8 @@ pub struct NodeData {
     /// Kind-specific fields, insertion-ordered. Canonical emit re-sorts
     /// alphabetically; the parser accepts any order.
     pub attrs: IndexMap<SmolStr, AttrValue>,
+    /// v0.7: optional node weight. Reuses the edge-weight enum.
+    pub weight: Option<EdgeWeight>,
 }
 
 #[derive(Debug)]
@@ -74,6 +80,7 @@ impl Nodes {
                 kind: d.kind,
                 name: d.name,
                 attrs: d.attrs,
+                weight: d.weight,
             })
             .collect();
         Ok(Self { weights, ids })
@@ -105,5 +112,25 @@ impl Nodes {
         self.weights.iter().enumerate().filter_map(|(i, data)| {
             u32::try_from(i).ok().map(|ix| NodeRef { ix, data })
         })
+    }
+
+    /// v0.7: validate that any `OpRef`/`ByteRef` inside a node's
+    /// `weight:` field points at a node of the right kind. Delegates
+    /// to `Edges::validate_weight_refs` for one source of truth.
+    #[must_use]
+    pub fn validate_weight_refs(&self) -> Vec<SemanticErr> {
+        let mut errs: Vec<SemanticErr> = Vec::new();
+        for nref in self.iter() {
+            if let Some(w) = &nref.data.weight {
+                if let Err(e) =
+                    crate::data::edges::Edges::validate_weight_refs(
+                        self, w,
+                    )
+                {
+                    errs.push(e);
+                }
+            }
+        }
+        errs
     }
 }

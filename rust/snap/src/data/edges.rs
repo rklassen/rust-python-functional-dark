@@ -2,7 +2,7 @@ use smol_str::SmolStr;
 
 use crate::data::err::{NonEmpty, SemanticErr};
 use crate::data::nodes::Nodes;
-use crate::data::types::{EdgeIx, NodeId, NodeIx};
+use crate::data::types::{EdgeIx, NodeId, NodeIx, NodeKind};
 use crate::data::weight::EdgeWeight;
 
 #[derive(Clone, Debug, PartialEq)]
@@ -76,6 +76,7 @@ impl Edges {
                         ),
                     )
                 })?;
+                Self::validate_weight_refs(nodes, &d.weight)?;
                 Ok(Edge {
                     family: d.family,
                     src,
@@ -225,6 +226,101 @@ impl Edges {
         })
     }
 
+    /// v0.7 kind-check on `@id` references inside an edge weight.
+    /// `OpRef` targets must be `kind: operator`; `ByteRef` targets
+    /// must be `kind: stream` (a `Custom("stream")` produced by the
+    /// `stream` keyword in the `streams { ... }` section).
+    pub(crate) fn validate_weight_refs(
+        nodes: &Nodes,
+        w: &EdgeWeight,
+    ) -> Result<(), SemanticErr> {
+        match w {
+            EdgeWeight::OpRef(id, _) => {
+                let nref = nodes.get(id).ok_or_else(|| {
+                    Self::weight_unknown_ref(id)
+                })?;
+                if matches!(nref.data.kind, NodeKind::Operator) {
+                    Ok(())
+                } else {
+                    Err(Self::weight_kind_op(id))
+                }
+            }
+            EdgeWeight::ByteRef(r, _) => {
+                let nref = nodes.get(&r.stream).ok_or_else(|| {
+                    Self::weight_unknown_ref(&r.stream)
+                })?;
+                if Self::is_stream_kind(&nref.data.kind) {
+                    Ok(())
+                } else {
+                    Err(Self::weight_kind_stream(&r.stream))
+                }
+            }
+            _ => Ok(()),
+        }
+    }
+
+    fn is_stream_kind(k: &NodeKind) -> bool {
+        match k {
+            NodeKind::Custom(s) => s.as_str() == "stream",
+            _ => false,
+        }
+    }
+
+    fn weight_unknown_ref(id: &NodeId) -> SemanticErr {
+        SemanticErr::new(
+            format!("weight `@{id}` references unknown node"),
+            Some("an existing node declared in `nodes`".into()),
+            NonEmpty::with_tail(
+                format!("declare node `{id}` first"),
+                vec![
+                    "check spelling".into(),
+                    "remove the weight reference".into(),
+                ],
+            ),
+        )
+    }
+
+    fn weight_kind_op(id: &NodeId) -> SemanticErr {
+        SemanticErr::new(
+            format!(
+                "edge weight `@{id}` (operator-ref) targets a non-operator \
+                 node"
+            ),
+            Some("an `operator` node for `-(@id)->` dynamic weight".into()),
+            NonEmpty::with_tail(
+                format!(
+                    "change `@{id}` to point at an `operator` node"
+                ),
+                vec![
+                    format!(
+                        "use `-(@{id} ..len)->` if you meant a stream slice"
+                    ),
+                    "drop the dynamic weight".into(),
+                ],
+            ),
+        )
+    }
+
+    fn weight_kind_stream(id: &NodeId) -> SemanticErr {
+        SemanticErr::new(
+            format!(
+                "edge weight `@{id} ..len` (slice) targets a non-stream node"
+            ),
+            Some("a `stream` node for `-(@id ..len)->` slice weight".into()),
+            NonEmpty::with_tail(
+                format!(
+                    "change `@{id}` to point at a `stream` node"
+                ),
+                vec![
+                    format!(
+                        "use bare `-(@{id})->` if you meant an operator-ref"
+                    ),
+                    "drop the slice tail".into(),
+                ],
+            ),
+        )
+    }
+
     fn csr_invariant_violation() -> SemanticErr {
         SemanticErr::new(
             "internal CSR builder index out of bounds".into(),
@@ -236,3 +332,7 @@ impl Edges {
         )
     }
 }
+
+#[cfg(test)]
+#[path = "edges_tests.rs"]
+mod tests;

@@ -10,12 +10,14 @@
 use indexmap::IndexMap;
 use smol_str::SmolStr;
 
+use crate::codec::weight_text::WeightText;
 use crate::data::literals::LiteralEntry;
 use crate::data::nodes::Nodes;
 use crate::data::registers::RegisterEntry;
 use crate::data::streams::StreamEntry;
 use crate::data::type_registry::{TypeEntry, TypeRegistry};
-use crate::data::types::{AttrValue, NodeKind};
+use crate::data::types::{AttrValue, NodeKind, NumericEncoding};
+use crate::data::weight::EdgeWeight;
 use crate::io::snap::emit::Emitter;
 
 impl Emitter<'_> {
@@ -111,19 +113,47 @@ impl Emitter<'_> {
                 self.out.push_str(name);
                 self.out.push('\'');
             }
-            let mut keys: Vec<&SmolStr> = nd.attrs.keys().collect();
+            // Emit attrs and (v0.7) `weight:` in unified alphabetical
+            // order so a node like `{ id, op, path, type, weight }`
+            // sorts correctly with `weight` falling at its natural
+            // position relative to the other keys.
+            let mut keys: Vec<SmolStr> =
+                nd.attrs.keys().cloned().collect();
+            if nd.weight.is_some() {
+                keys.push(SmolStr::new("weight"));
+            }
             keys.sort_unstable();
-            for k in keys {
-                if let Some(v) = nd.attrs.get(k) {
-                    self.out.push_str(", ");
-                    self.out.push_str(k);
-                    self.out.push_str(": ");
+            for k in &keys {
+                self.out.push_str(", ");
+                self.out.push_str(k);
+                self.out.push_str(": ");
+                if k == "weight" {
+                    if let Some(w) = &nd.weight {
+                        self.out.push_str(&Self::render_node_weight(w));
+                    }
+                } else if let Some(v) = nd.attrs.get(k) {
                     self.out.push_str(&Self::render_attr(v));
                 }
             }
             self.out.push_str(" },\n");
         }
         self.out.push_str("}\n");
+    }
+
+    /// v0.7 node-weight rendering. Uses the parens form
+    /// `(<inner>)X` (X is the optional format mark), matching the
+    /// edge-weight emission. Bare-scalar shorthand is reserved for
+    /// hand-written input; canonical output always uses parens for
+    /// stability.
+    fn render_node_weight(w: &EdgeWeight) -> String {
+        let inner = WeightText::emit(w);
+        let mark = match w.encoding() {
+            Some(NumericEncoding::Snorm) => "s",
+            Some(NumericEncoding::Unorm) => "u",
+            Some(NumericEncoding::Hex) => "h",
+            _ => "",
+        };
+        format!("({inner}){mark}")
     }
 
     pub(crate) fn emit_registers(

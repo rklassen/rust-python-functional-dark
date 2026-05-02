@@ -223,11 +223,22 @@ impl JsonParse {
                 attrs.insert(SmolStr::new(k), Self::attr(v));
             }
         }
+        let weight = m
+            .get("weight")
+            .and_then(|v| v.as_str())
+            .and_then(|s| {
+                WeightText::parse(
+                    s,
+                    crate::data::types::NumericEncoding::Float,
+                )
+                .ok()
+            });
         Some(NodeDef {
             id,
             kind: kind.clone(),
             name,
             attrs,
+            weight,
         })
     }
 

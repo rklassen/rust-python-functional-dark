@@ -1,0 +1,212 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Snap",
+  "scopeName": "source.snap",
+  "fileTypes": ["snap"],
+  "patterns": [
+    { "include": "#magic-header" },
+    { "include": "#magic-trailer" },
+    { "include": "#comment" },
+    { "include": "#string" },
+    { "include": "#section-keyword" },
+    { "include": "#node-kind" },
+    { "include": "#field-keyword" },
+    { "include": "#weighted-arrow-open" },
+    { "include": "#weighted-arrow-close" },
+    { "include": "#unweighted-arrow" },
+    { "include": "#weight-separator" },
+    { "include": "#slice-operator" },
+    { "include": "#offset-prefix" },
+    { "include": "#reference-at" },
+    { "include": "#reference-dollar" },
+    { "include": "#datetime" },
+    { "include": "#version-number" },
+    { "include": "#float" },
+    { "include": "#integer" },
+    { "include": "#hex-literal" },
+    { "include": "#base64-continuation" },
+    { "include": "#constant-language" },
+    { "include": "#type-expression" },
+    { "include": "#dotted-identifier" },
+    { "include": "#identifier" },
+    { "include": "#punctuation" }
+  ],
+  "repository": {
+    "magic-header": {
+      "name": "meta.snap meta.header.snap",
+      "match": "(🪢snap)\\b",
+      "captures": {
+        "1": { "name": "keyword.control.magic.snap" }
+      }
+    },
+    "magic-trailer": {
+      "name": "meta.snap meta.trailer.snap",
+      "match": "\\b(end)(🪢)",
+      "captures": {
+        "1": { "name": "keyword.control.magic.snap" },
+        "2": { "name": "keyword.control.magic.snap" }
+      }
+    },
+    "comment": {
+      "name": "comment.line.number-sign.snap",
+      "match": "#.*$"
+    },
+    "string": {
+      "name": "string.quoted.single.snap",
+      "begin": "'",
+      "end": "'",
+      "patterns": [
+        {
+          "name": "constant.character.escape.snap",
+          "match": "\\\\."
+        }
+      ]
+    },
+    "section-keyword": {
+      "patterns": [
+        {
+          "name": "keyword.control.section.snap",
+          "match": "(?<![A-Za-z0-9_])\\.graph(?![A-Za-z0-9_])"
+        },
+        {
+          "name": "keyword.control.section.snap",
+          "match": "(?<![A-Za-z0-9_$@.])(edges|extras|layout|literals|nodes|registers|streams|types)(?![A-Za-z0-9_$])"
+        }
+      ]
+    },
+    "node-kind": {
+      "name": "entity.name.section.snap",
+      "match": "(?<![A-Za-z0-9_$@.])(file|function|info|object|operator|property|stream)(?![A-Za-z0-9_$])"
+    },
+    "field-keyword": {
+      "name": "variable.parameter.field.snap",
+      "match": "(?<![A-Za-z0-9_$@.])(id|name|kind|version|gen|time|workspace|operators|data_path|code_path|date|in|out|op|path|type|logic|source|weight|data)(?=\\s*:)"
+    },
+    "weighted-arrow-open": {
+      "name": "keyword.operator.arrow.snap",
+      "match": "-\\("
+    },
+    "weighted-arrow-close": {
+      "match": "\\)([suh])?(->)",
+      "captures": {
+        "1": { "name": "keyword.other.format-mark.snap" },
+        "2": { "name": "keyword.operator.arrow.snap" }
+      }
+    },
+    "unweighted-arrow": {
+      "name": "keyword.operator.arrow.snap",
+      "match": "->"
+    },
+    "weight-separator": {
+      "name": "keyword.operator.weight-separator.snap",
+      "match": "\\|"
+    },
+    "slice-operator": {
+      "name": "keyword.operator.slice.snap",
+      "match": "\\.\\."
+    },
+    "offset-prefix": {
+      "name": "keyword.operator.offset.snap",
+      "match": "(?<=\\s)\\+(?=\\d)"
+    },
+    "reference-at": {
+      "name": "keyword.operator.reference.snap",
+      "match": "@"
+    },
+    "reference-dollar": {
+      "name": "keyword.operator.reference.snap",
+      "match": "\\$"
+    },
+    "datetime": {
+      "name": "constant.numeric.datetime.snap",
+      "match": "\\b\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(?::\\d{2})?Z\\b"
+    },
+    "version-number": {
+      "name": "constant.numeric.version.snap",
+      "match": "(?<![A-Za-z0-9_])\\d+\\.\\d+(?![A-Za-z0-9_.])"
+    },
+    "float": {
+      "name": "constant.numeric.float.snap",
+      "match": "(?<![A-Za-z0-9_])-?(?:\\d+\\.\\d*|\\.\\d+)(?![A-Za-z0-9_])"
+    },
+    "integer": {
+      "name": "constant.numeric.integer.snap",
+      "match": "(?<![A-Za-z0-9_])-?\\d+(?![A-Za-z0-9_.])"
+    },
+    "hex-literal": {
+      "name": "constant.numeric.hex.snap",
+      "match": "(?<![A-Za-z0-9_])[0-9A-F]{2,}(?![a-z0-9_])"
+    },
+    "base64-continuation": {
+      "name": "string.unquoted.base64.snap",
+      "match": "(?<=^|\\s)\\+[A-Za-z0-9+/=]+"
+    },
+    "constant-language": {
+      "name": "constant.language.snap",
+      "match": "(?<![A-Za-z0-9_$@.])(None|true|false)(?![A-Za-z0-9_$])"
+    },
+    "type-expression": {
+      "patterns": [
+        {
+          "match": "(?<![A-Za-z0-9_$@])(list|dict|tuple|set|optional|union)(\\[)",
+          "captures": {
+            "1": { "name": "support.type.snap" },
+            "2": { "name": "punctuation.definition.type.begin.snap" }
+          }
+        },
+        {
+          "name": "support.type.snap",
+          "match": "(?<![A-Za-z0-9_$@.])(int|float|bool|str|bytes)(?![A-Za-z0-9_$])"
+        }
+      ]
+    },
+    "dotted-identifier": {
+      "name": "support.type.qualified.snap",
+      "match": "(?<![A-Za-z0-9_$@])[A-Z][A-Za-z0-9_]*(?:\\.[A-Z][A-Za-z0-9_]*)+"
+    },
+    "identifier": {
+      "patterns": [
+        {
+          "name": "variable.name.snap",
+          "match": "(?<=@)[a-z][a-z0-9]{3}(?:[a-z0-9]{4})?(?:\\.[a-z_][a-z0-9_]*)*"
+        },
+        {
+          "name": "variable.name.snap",
+          "match": "(?<=\\$)[a-z0-9]{4}(?:[a-z0-9]{4})?"
+        },
+        {
+          "name": "variable.name.snap",
+          "match": "(?<![A-Za-z0-9_$@.])[a-z_][a-z0-9_-]*"
+        },
+        {
+          "name": "variable.name.snap",
+          "match": "(?<![A-Za-z0-9_$@.])[A-Z][A-Za-z0-9_]*"
+        }
+      ]
+    },
+    "punctuation": {
+      "patterns": [
+        {
+          "name": "punctuation.section.block.begin.snap",
+          "match": "[\\{\\[\\(]"
+        },
+        {
+          "name": "punctuation.section.block.end.snap",
+          "match": "[\\}\\]\\)]"
+        },
+        {
+          "name": "punctuation.separator.snap",
+          "match": "[,]"
+        },
+        {
+          "name": "keyword.operator.assignment.snap",
+          "match": "="
+        },
+        {
+          "name": "keyword.operator.colon.snap",
+          "match": ":"
+        }
+      ]
+    }
+  }
+}

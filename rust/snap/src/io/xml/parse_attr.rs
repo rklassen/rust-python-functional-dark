@@ -9,7 +9,9 @@ use indexmap::IndexMap;
 use quick_xml::events::{BytesStart, Event};
 use smol_str::SmolStr;
 
-use crate::data::types::AttrValue;
+use crate::codec::weight_text::WeightText;
+use crate::data::types::{AttrValue, NumericEncoding};
+use crate::data::weight::EdgeWeight;
 use crate::io::xml::parse::XmlReader;
 
 impl XmlReader<'_> {
@@ -177,6 +179,16 @@ impl XmlReader<'_> {
             }
         }
         buf
+    }
+
+    /// v0.7 node `weight=` XML attribute reader. Float-encoding
+    /// fallback matches the edge `w=` convention; see `r_edge`.
+    pub(crate) fn node_weight_from(
+        b: &BytesStart<'_>,
+    ) -> Option<EdgeWeight> {
+        Self::attr_str(b, "weight").and_then(|s| {
+            WeightText::parse(&s, NumericEncoding::Float).ok()
+        })
     }
 
     pub(crate) fn skip_to_end(&mut self, name: &str) {

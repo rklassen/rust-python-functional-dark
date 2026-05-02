@@ -7,6 +7,7 @@
 use indexmap::IndexMap;
 use smol_str::SmolStr;
 
+use crate::codec::weight_text::WeightText;
 use crate::data::literals::LiteralEntry;
 use crate::data::nodes::Nodes;
 use crate::data::registers::RegisterEntry;
@@ -85,6 +86,11 @@ impl XmlEmit {
             if let Some(name) = &nd.name {
                 out.push_str(" name=\"");
                 out.push_str(&Self::esc_attr(name));
+                out.push('"');
+            }
+            if let Some(w) = &nd.weight {
+                out.push_str(" weight=\"");
+                out.push_str(&Self::esc_attr(&WeightText::emit(w)));
                 out.push('"');
             }
             if nd.attrs.is_empty() {

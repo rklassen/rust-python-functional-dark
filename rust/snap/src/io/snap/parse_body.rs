@@ -189,6 +189,7 @@ impl Parser<'_> {
         let mut id: SmolStr = SmolStr::default();
         let mut name: Option<SmolStr> = None;
         let mut attrs: IndexMap<SmolStr, AttrValue> = IndexMap::new();
+        let mut weight: Option<EdgeWeight> = None;
         loop {
             match self.cur.value.clone() {
                 Tok::RBrace => { self.bump_or_record(); break; }
@@ -202,6 +203,13 @@ impl Parser<'_> {
                     let key = SmolStr::new(k);
                     self.bump_or_record();
                     if !self.expect_colon() { continue; }
+                    if key == "weight" {
+                        if let Some(w) = self.read_node_weight() {
+                            weight = Some(w);
+                        }
+                        self.expect_comma_after_kv();
+                        continue;
+                    }
                     let v = self.parse_attr_value();
                     if key == "id" {
                         if let AttrValue::Ident(s) = &v {
@@ -227,7 +235,7 @@ impl Parser<'_> {
             }
         }
         self.expect_comma_after_kv();
-        out.push(NodeDef { id, kind, name, attrs });
+        out.push(NodeDef { id, kind, name, attrs, weight });
     }
 
     pub(crate) fn p_extras(

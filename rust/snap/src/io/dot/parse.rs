@@ -287,11 +287,15 @@ impl<'a> DotReader<'a> {
                 );
             }
         }
+        let weight = attrs
+            .get("_snap_weight")
+            .and_then(|s| Self::parse_node_weight_attr(s));
         st.nodes.push(NodeDef {
             id,
             kind,
             name,
             attrs: node_attrs,
+            weight,
         });
     }
 
@@ -356,6 +360,20 @@ impl<'a> DotReader<'a> {
             st.streams,
             TypeRegistry::new(types),
         )
+    }
+
+    /// Parse the `_snap_weight` DOT attribute (stringly-typed
+    /// `WeightText` form, default Float encoding — same convention as
+    /// `_snap_w` on edges). Returns None on parse failure to avoid
+    /// failing the whole graph for one bad attr.
+    pub(crate) fn parse_node_weight_attr(
+        s: &str,
+    ) -> Option<crate::data::weight::EdgeWeight> {
+        crate::codec::weight_text::WeightText::parse(
+            s,
+            crate::data::types::NumericEncoding::Float,
+        )
+        .ok()
     }
 
     pub(crate) fn node_kind(s: &str) -> NodeKind {

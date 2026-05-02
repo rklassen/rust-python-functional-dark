@@ -226,6 +226,12 @@ impl DotEmit {
                     out, &mut first, "_snap_name", name,
                 );
             }
+            if let Some(w) = &nd.weight {
+                let s = WeightText::emit(w);
+                Self::push_pair(
+                    out, &mut first, "_snap_weight", &s,
+                );
+            }
             let mut ks: Vec<&SmolStr> = nd.attrs.keys().collect();
             ks.sort_unstable();
             for k in ks {

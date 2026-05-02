@@ -263,6 +263,12 @@ impl JsonEmit {
                     Value::String(name.to_string()),
                 );
             }
+            if let Some(w) = &nd.weight {
+                item.insert(
+                    "weight".into(),
+                    Value::String(WeightText::emit(w)),
+                );
+            }
             let mut attrs: BTreeMap<String, Value> = BTreeMap::new();
             for (k, v) in &nd.attrs {
                 attrs.insert(k.to_string(), Self::attr_v(v));

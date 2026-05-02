@@ -30,16 +30,25 @@ impl WeightText {
         rest: &str,
         enc: Enc,
     ) -> Result<EdgeWeight, WErr> {
+        // v0.7 disambiguation: bare `@id` (no `..` or `+` after the id)
+        // is an operator-ref dynamic weight; `@id ..len` /
+        // `@id +offset..len` is a bytestream slice. Kind validation
+        // (operator vs stream) lives in `Edges::new` where the node
+        // table is in scope.
+        let s = rest.trim();
+        if !Self::has_slice_form(s) {
+            return Self::p_opref(s, enc);
+        }
         if !matches!(enc, Enc::Raw) {
-            // Caller passed a non-Raw arrow with `@id` content; that's
-            // the caller's bug, but we still emit a clear diagnostic.
+            // Caller passed a non-Raw arrow with `@id ..len` content;
+            // that's the caller's bug, but we still emit a clear
+            // diagnostic.
             return Err(vec![WErrs::e(
                 "@byteref under non-Raw encoding",
                 "the plain `-(@id ..len)>` arrow (Raw)",
                 &["use `-(@id ..len)>` (no format mark)"],
             )]);
         }
-        let s = rest.trim();
         let bad = || vec![WErrs::bad_byteref()];
         let id_end = s.find([' ', '+', '.']).ok_or_else(bad)?;
         let id = s[..id_end].trim();
@@ -61,6 +70,31 @@ impl WeightText {
             len,
         };
         Ok(EdgeWeight::ByteRef(bref, Enc::Raw))
+    }
+
+    /// True when an `@id` body has a slice tail (`..` or `+...`).
+    /// Bare `@id` (no slice) is an operator-ref.
+    fn has_slice_form(s: &str) -> bool {
+        s.contains("..") || s.contains('+')
+    }
+
+    pub(super) fn p_opref(
+        s: &str,
+        enc: Enc,
+    ) -> Result<EdgeWeight, WErr> {
+        let id = s.trim();
+        if id.is_empty() {
+            return Err(vec![WErrs::bad_opref()]);
+        }
+        // The id must be a single identifier — no whitespace, no
+        // commas, no parens. Any of those means a malformed weight.
+        if id
+            .bytes()
+            .any(|b| matches!(b, b' ' | b'\t' | b',' | b'|'))
+        {
+            return Err(vec![WErrs::bad_opref()]);
+        }
+        Ok(EdgeWeight::OpRef(id.into(), enc))
     }
 
     fn p_byteref_slice(tail: &str) -> Result<(u32, &str), WErr> {
