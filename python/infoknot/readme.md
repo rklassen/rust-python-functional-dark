@@ -1,10 +1,10 @@
-# snap-py
+# infoknot
 
 Python export surface for Snap canonical text. This package mirrors the
 Rust implementation under `rust/snap`: it carries the same data shapes
 and emits text the Rust parser accepts byte-for-byte.
 
-`snap-py` is **emit-only**. There is no parser in this package. If you
+`infoknot` is **emit-only**. There is no parser in this package. If you
 need to read `.snap`, use the Rust crate.
 
 ## Requirements
@@ -18,11 +18,11 @@ raising on validation failures. This lets agent consumers route errors
 without `try/except`.
 
 ```python
-from snap_py import (
+from infoknot import (
     Edge, Graph, GraphMeta, Node, NumericEncoding,
     StandardKind, WeightVec, emit, ident,
 )
-from snap_py.result import Ok, Err
+from infoknot.result import Ok, Err
 
 graph = Graph(
     handle="demo",
@@ -55,7 +55,7 @@ that unwrap and raise `SemanticErr` on failure.
 ## Sum-type `EdgeWeight`
 
 ```python
-from snap_py import (
+from infoknot import (
     BytestreamRef, NumericEncoding,
     WeightByteRef, WeightMatrix, WeightNone, WeightOpRef, WeightVec,
 )
@@ -91,6 +91,6 @@ enforced on emit; out-of-range hex values return
 ## Verification
 
 ```sh
-cd python/snap-py
-python3.12 -m unittest discover -s tests
+cd python
+python3.12 -m unittest discover -s infoknot/tests -t .
 ```

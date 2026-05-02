@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import unittest
 
-from snap_py import (
+from infoknot import (
     BytestreamRef,
     CustomKind,
     Edge,
@@ -29,7 +29,7 @@ from snap_py import (
     emit,
     ident,
 )
-from snap_py.result import Err, Ok, SemanticErr
+from infoknot.result import Err, Ok, SemanticErr
 
 
 META = GraphMeta(

@@ -1,7 +1,7 @@
 [project]
-name = "snap-py"
+name = "infoknot"
 version = "0.2.0"
-description = "Python export surface for the Snap graph serialization format."
+description = "Python emitter for snap, the typed-graph DSL with the 🪢 magic header."
 requires-python = ">=3.12"
 
 [build-system]
@@ -9,4 +9,10 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-packages = ["snap_py"]
+packages = ["infoknot"]
+
+[tool.setuptools.package-dir]
+infoknot = "."
+
+[tool.setuptools.exclude-package-data]
+infoknot = ["tests/*", "pyproject.toml", "readme.md", ".gitignore"]

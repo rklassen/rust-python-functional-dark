@@ -1,7 +1,7 @@
 """Result-style return type and structured semantic error.
 
 This module is the universal return-shape carrier for any operation in
-``snap-py`` that can fail with a domain-meaningful reason.  The error is
+``infoknot`` that can fail with a domain-meaningful reason.  The error is
 ``SemanticErr`` — a frozen dataclass that ALSO inherits from ``Exception``
 so emergency ``raise`` at API boundaries remains possible without losing
 the structured payload.

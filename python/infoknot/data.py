@@ -278,7 +278,7 @@ class Graph:
 
         Convenience wrapper that unwraps a successful ``Result``; on
         validation failure it raises ``SemanticErr``. Callers wanting
-        the structured error should use ``snap_py.emit.emit`` directly.
+        the structured error should use ``infoknot.emit.emit`` directly.
         """
         from .emit import emit
         from .result import Err, Ok
