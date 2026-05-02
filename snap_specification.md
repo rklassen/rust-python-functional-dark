@@ -1,7 +1,7 @@
 # Snap Specification
 
-v0.5
-2026-04-21T02:28Z
+v0.7
+2026-05-02T11:57Z
 
 ## Related Projects
 
@@ -10,17 +10,21 @@ v0.5
 
 ## Abstract
 
-- Snap is a typed directed graph over objects, operators, and related node
-  kinds.
+- Snap is a serialization language for typed, directed graph over object and
+  operator nodes. It is intended to be human readable and editable, in a 
+  worst case scenario, deterministic in formatting, maximally deterministic and
+  maximally flat in final form.
 - Graph connectivity is defined through directed edges and typed matchpoints
   such as `node.out.path` and `node.in.path`.
 - `object` nodes represent endurants (continuants).
 - `operator` nodes represent actions (occurrents or perdurants).
 - `property` is a constrained operator with a unitary input and a non-fallible,
   typed value output.
-- `v0.4` introduced typed edge families and optional edge weights.
-- `v0.5` retains that edge model while preserving the hand-editable `v0.3`
-  file layout.
+- `v0.6` introduces numerical weight embeddings on edges via an arrow-suffix
+  syntax with literal-format marks (`s`, `u`, `h`).
+- `v0.7` adds two extensions: an edge weight may reference an `operator` node
+  (`-(@op_id)->`) for runtime-evaluated dynamic weight; and node entries may
+  carry a `weight:` field using the same value grammar as edge weights.
 
 ## Contents
 
@@ -43,7 +47,7 @@ Top-level sections are all required and appear in this order:
 
 ```text
 🪢snap <optional handle>
-.graph { ... version: 0.5, ... }
+.graph { ... version: 0.7, ... }
 edges { ... }
 extras { ... }
 layout { ... }
@@ -66,8 +70,8 @@ end🪢
   ordering within sections.
 - Dictionaries, lists of named entries, and section members are alphabetically
   ordered in canonical output unless a section explicitly says otherwise.
-- All characters remain significant. The old `v0.3` rule that ignored columns
-  `81+` is removed in `v0.5`.
+- All characters remain significant. Lines longer than 80 will receive a 
+  warning but not an error.
 - Paths use forward slashes.
 - Trailing slashes on path-like values are permitted but are not required unless
   a producer has a semantic reason to preserve them.
@@ -88,9 +92,6 @@ end🪢
 
 ### Information Table (`.graph` section)
 
-`v0.5` keeps the `v0.3` graph metadata shape and incorporates the additional
-fields that appeared in the `v0.4` in-memory model.
-
 Required keys:
 1. `gen`: generation index. Incremented at every write. Not user-editable.
 2. `id`: stable graph id.
@@ -98,7 +99,7 @@ Required keys:
 4. `operators`: operator source root or logical operator namespace.
 5. `time`: canonical timestamp for this file snapshot.
 6. `types`: type registry source summary or `None`.
-7. `version`: must be `0.5`.
+7. `version`: must be `0.7`.
 8. `workspace`: workspace root for relative paths.
 
 Optional keys:
@@ -109,7 +110,7 @@ Optional keys:
 Rules:
 - `time` and `date`, when present, use ISO 8601 UTC with terminal `Z`.
 - Strings are single-quoted when quoting is required.
-- Unknown keys are not part of canonical `v0.5`.
+- Unknown keys are not part of canonical `v0.7`.
 
 ```snap
 .graph {
@@ -119,7 +120,7 @@ Rules:
  operators: 'code_path/library_name/',
  time: 2026-04-20T00:00:00Z,
  types: None,
- version: 0.5,
+ version: 0.7,
  workspace: 'data_path/project_name/',
  date: 2026-04-20T00:00:00Z,
  data_path: 'data_path/',
@@ -164,14 +165,15 @@ Array indexing may be expressed as `name[index]`.
 
 - `edges` contains directed graph connectivity.
 - Untyped edges remain valid.
-- Typed grouped edges from `v0.4` are part of `v0.5`.
 - Edge families are block-scoped.
-- Edge weight is optional and numeric.
-- Unweighted edges may chain.
-- Weighted edges must be written as single edges, not chained paths.
+- Edge weight is optional and may be a scalar, list, matrix, or bytestream
+  reference.
+- Edges may chain.
+- Snap is intentionally flat: nested embedding is avoided in favor of `@id`
+  references.
 - Matchpoints are typed half-edge endpoints and are valid in source and target
   positions.
-- Builtins such as `get(@id)` are not standardized in `v0.5`; explicit named
+- Builtins such as `get(@id)` are not standardized in `v0.7`; explicit named
   references through `registers` are preferred.
 
 Untyped edges:
@@ -202,13 +204,72 @@ edges {
 }
 ```
 
-Weighted edges:
+### Edge weight embeddings (v0.6)
+
+Numerical weights ride on the arrow itself. The arrow alphabet is:
+
+- `->` unweighted
+- `-(...)->` default (raw, no literal-format interpretation)
+- `-(...)s->` snorm (signed normalized, range `[-1, 1]`)
+- `-(...)u->` unorm (unsigned normalized, range `[0, 1]`)
+- `-(...)h->` hex (raw bytes, uppercase hexadecimal)
+
+Rules:
+
+- The format mark is a single letter from `{s, u, h}`, placed between `)`
+  and `->`.
+- The format mark is a literal-format, not a type hint. The `:` operator
+  remains reserved for type annotations on values; numerical encodings on
+  weights live on the arrow itself.
+- Brackets `[` and `]` are not used in edge weights. A length-1 vector is
+  serialized as a scalar in the codec.
+- Flat list weights use a bare comma list: `0.5, 0.875, 0.23`.
+- List-of-lists rows use the pipe `|` separator:
+  `1, 2, 3 | 4, 5 | 6, 7, 8, 9`.
+- Bytestream references take the form `@id ..len` or `@id +offset..len`.
+  The format mark on the arrow says how to decode the referenced bytes;
+  for example `-(@emb_42 ..1024)s->` decodes the bytes as snorm. The
+  default decoding (no mark) is Raw with no interpretation.
+
+Validation rules:
+
+- snorm values must lie in `[-1, 1]`.
+- unorm values must lie in `[0, 1]`.
+- Hex weights must be byte-aligned (even nibble count).
+- Hex tokens use uppercase `A`-`F` and digits `0`-`9` only.
+- Mixing integer and float in the same flat list is rejected.
+- An empty weight input `-()->` is rejected.
+- The `:0o` octal-prefix form is hard-banned: it collides with Rust and
+  Python octal literal conventions and is never accepted.
+- The legacy `:snorm`, `:unorm`, and `:0h` suffix-tag forms from earlier
+  drafts are rejected; format marks live on the arrow only.
+
+Internal data model mapping (for implementers):
+
+- single value -> `Vec(len 1)`
+- flat list -> `Vec`
+- pipe-separated rows -> `Matrix`
+- bytestream ref -> `ByteRef(_, encoding)`
+
+Worked examples:
 
 ```snap
 edges {
- import {
-  Design -> Civil : 352,
-  Design -> Pdf : 388,
+ embeddings {
+  a -> b,
+  a -(352)-> b,
+  a -(0.5)s-> b,
+  a -(0.875u)-> b,
+  a -(FF12AABB)h-> b,
+  a -(-0.25, .875, 0, 0.5)s-> b,
+  a -(0.5, 0.875, 0.23)-> b,
+  a -(1, 4, 2, 3)-> b,
+  a -(00FFAA12BB34CC89DD, 119922DE23FF00FF)h-> b,
+  a -(1, 2, 3 | 4, 5 | 6, 7, 8, 9)-> b,
+  a -(0.1, 0.2 | 0.3, 0.4)s-> b,
+  a -(@emb_42 ..1024)-> b,
+  a -(@emb_42 ..1024)s-> b,
+  a -(@emb_42 +512..1024)-> b,
  }
 }
 ```
@@ -467,7 +528,7 @@ streams {
  },
  stream additional$c8d3 {
   :ZU7YGMxmNLTokjYIcPGS6zB6Ymb316WdvEnlicNAOrf60ShcYVOYdIiAAoYxI15VV30OBAqHn4hWU
-  +afDvn69q1hzHJjKCRHWUmTj8OvTyBqquR9WAmDt6IDLjGYwH/HmoRnOUdg44V42C7oCa9bq3HoJG5R
+  +afDvn69q1hzHJjKCRHWUmTj8OvTyBqquR9WAmDt6IDLjGYwH/HmoRnOUdg44V42C7oCa9bq3HoJG5
   +7bd6N8Ncs9GjYilu9Tx3fzDbPrpAYiWRWLBK8+Sog==,
  },
 }
@@ -504,6 +565,12 @@ Reserved syntax and section words:
 @
 $
 ->
+-(
+)->
+)s->
+)u->
+)h->
+|
 :
 =
 snap
@@ -533,9 +600,18 @@ id
 version
 ```
 
+Notes:
+
+- The format marks `s`, `u`, and `h` are only meaningful in arrow-suffix
+  position (between `)` and `->` on a weighted edge). Outside that
+  position they are ordinary identifiers.
+- `|` is the list-of-lists row separator inside edge weight parentheses.
+- `[` and `]` are not used in edge weights; they still appear in the
+  `types` section list-bracket syntax such as `list[T]`.
+
 ## Time and Scalars
 
-- Timestamps use ISO 8601 UTC with terminal `Z`.
+- Timestamps use ISO 8601 UTC with terminal `Z`, seconds omitted.
 - Strings use single quotes when quoting is required.
 - Numbers may be integers or floats.
 - Booleans are `true` and `false`.
