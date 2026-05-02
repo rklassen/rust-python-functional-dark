@@ -1,0 +1,7 @@
+.DS_Store
+*.vsix
+py/**
+rust/**
+.claude/**
+quickbuild.zsh
+palette.md

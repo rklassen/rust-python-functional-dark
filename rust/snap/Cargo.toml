@@ -1,0 +1,27 @@
+[package]
+name = "snap"
+version = "0.1.0"
+edition = "2021"
+description = "Reference serializer for the snap typed-graph DSL (v0.6)"
+license = "MIT OR Apache-2.0"
+
+[features]
+default = ["serde"]
+serde = ["dep:serde", "smol_str/serde", "smallvec/serde"]
+petgraph = ["dep:petgraph"]
+daggy = ["dep:daggy", "petgraph"]
+dot = ["dep:dot-writer"]
+json = ["dep:serde_json", "serde"]
+xml = ["dep:quick-xml", "serde"]
+
+[dependencies]
+smol_str = "0.2"
+smallvec = "1"
+indexmap = "2"
+base64 = "0.22"
+serde = { version = "1", features = ["derive"], optional = true }
+serde_json = { version = "1", optional = true }
+quick-xml = { version = "0.36", features = ["serialize"], optional = true }
+petgraph = { version = "0.6", optional = true }
+daggy = { version = "0.8", optional = true }
+dot-writer = { version = "0.1", optional = true }
