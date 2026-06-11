@@ -1,7 +1,7 @@
 # Snap Specification
 
-v0.7
-2026-05-02T11:57Z
+v0.8
+2026-05-27T00:00Z
 
 ## Related Projects
 
@@ -25,6 +25,10 @@ v0.7
 - `v0.7` adds two extensions: an edge weight may reference an `operator` node
   (`-(@op_id)->`) for runtime-evaluated dynamic weight; and node entries may
   carry a `weight:` field using the same value grammar as edge weights.
+- `v0.8` removes the `info` node kind, which was redundant with `extras`
+  (graph-level dictionary metadata) and with typed nodes (per-node case).
+  Operator embeddings in edges remain provided by v0.7's `-(@op_id)->`
+  reference form; no new edge syntax is introduced in v0.8.
 
 ## Contents
 
@@ -47,7 +51,7 @@ Top-level sections are all required and appear in this order:
 
 ```text
 🪢snap <optional handle>
-.graph { ... version: 0.7, ... }
+.graph { ... version: 0.8, ... }
 edges { ... }
 extras { ... }
 layout { ... }
@@ -99,7 +103,7 @@ Required keys:
 4. `operators`: operator source root or logical operator namespace.
 5. `time`: canonical timestamp for this file snapshot.
 6. `types`: type registry source summary or `None`.
-7. `version`: must be `0.7`.
+7. `version`: must be `0.8`.
 8. `workspace`: workspace root for relative paths.
 
 Optional keys:
@@ -110,7 +114,7 @@ Optional keys:
 Rules:
 - `time` and `date`, when present, use ISO 8601 UTC with terminal `Z`.
 - Strings are single-quoted when quoting is required.
-- Unknown keys are not part of canonical `v0.7`.
+- Unknown keys are not part of canonical `v0.8`.
 
 ```snap
 .graph {
@@ -120,7 +124,7 @@ Rules:
  operators: 'code_path/library_name/',
  time: 2026-04-20T00:00:00Z,
  types: None,
- version: 0.7,
+ version: 0.8,
  workspace: 'data_path/project_name/',
  date: 2026-04-20T00:00:00Z,
  data_path: 'data_path/',
@@ -173,7 +177,7 @@ Array indexing may be expressed as `name[index]`.
   references.
 - Matchpoints are typed half-edge endpoints and are valid in source and target
   positions.
-- Builtins such as `get(@id)` are not standardized in `v0.7`; explicit named
+- Builtins such as `get(@id)` are not standardized in `v0.8`; explicit named
   references through `registers` are preferred.
 
 Untyped edges:
@@ -340,7 +344,6 @@ literals {
 - Standardized node kinds are:
   - `file`
   - `function`
-  - `info`
   - `object`
   - `operator`
   - `property`
@@ -410,21 +413,6 @@ function LandXmlWriter.write$32gp {
  },
  out: None,
  source: Writers/LandXmlWriter.py,
-},
-```
-
-### Info
-
-Generic dictionary with arbitrary keys in addition to `id` and `name`.
-
-```snap
-info {
- id: c7f1,
- name: 'LAZ Source Info',
- key_b: true,
- key_f: 123.45,
- key_i: 123,
- key_s: 'value',
 },
 ```
 
@@ -586,7 +574,6 @@ types
 end
 file
 function
-info
 object
 operator
 property
